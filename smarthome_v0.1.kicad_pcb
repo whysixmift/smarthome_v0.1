@@ -34,6 +34,50 @@
 		(45 "User.4" user)
 	)
 	(setup
+		(stackup
+			(layer "F.SilkS"
+				(type "Top Silk Screen")
+				(color "White")
+			)
+			(layer "F.Paste"
+				(type "Top Solder Paste")
+			)
+			(layer "F.Mask"
+				(type "Top Solder Mask")
+				(color "Purple")
+				(thickness 0.01)
+			)
+			(layer "F.Cu"
+				(type "copper")
+				(thickness 0.035)
+			)
+			(layer "dielectric 1"
+				(type "core")
+				(color "FR4 natural")
+				(thickness 1.51)
+				(material "FR4")
+				(epsilon_r 4.5)
+				(loss_tangent 0.02)
+			)
+			(layer "B.Cu"
+				(type "copper")
+				(thickness 0.035)
+			)
+			(layer "B.Mask"
+				(type "Bottom Solder Mask")
+				(color "Purple")
+				(thickness 0.01)
+			)
+			(layer "B.Paste"
+				(type "Bottom Solder Paste")
+			)
+			(layer "B.SilkS"
+				(type "Bottom Silk Screen")
+				(color "White")
+			)
+			(copper_finish "None")
+			(dielectric_constraints no)
+		)
 		(pad_to_mask_clearance 0)
 		(allow_soldermask_bridges_in_footprints no)
 		(tenting
@@ -50,6 +94,7 @@
 		)
 		(capping no)
 		(filling no)
+		(zone_defaults)
 		(pcbplotparams
 			(layerselection 0x00000000_00000000_55555555_5755f5ff)
 			(plot_on_all_layers_selection 0x00000000_00000000_00000000_00000000)
@@ -385,6 +430,17 @@
 			)
 			(rotate
 				(xyz -90 -0 -180)
+			)
+		)
+		(model "${KIPRJMOD}/3D/Screw Terminal Block 5mm Blue 6-way.step"
+			(offset
+				(xyz 12.5 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz -90 -0 -0)
 			)
 		)
 	)
@@ -3246,6 +3302,17 @@
 				(xyz -90 -0 -0)
 			)
 		)
+		(model "${KIPRJMOD}/3D/TYPE-C-31-M-12--3DModel-STEP-56544.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz -90 -0 -0)
+			)
+		)
 	)
 	(footprint "HF46F_005-HS1:RELAY_HF46F_005-HS1"
 		(layer "F.Cu")
@@ -3696,6 +3763,17 @@
 			)
 			(rotate
 				(xyz -90 -0 -0)
+			)
+		)
+		(model "${KIPRJMOD}/3D/HF46F.stp"
+			(offset
+				(xyz 9 -2.5 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz -0 -90 -0)
 			)
 		)
 	)
@@ -7416,6 +7494,17 @@
 				(xyz -90 -0 -180)
 			)
 		)
+		(model "${KIPRJMOD}/3D/Screw Terminal Block 5mm Blue 6-way.step"
+			(offset
+				(xyz 13 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz -90 -0 -0)
+			)
+		)
 	)
 	(footprint "Resistor_SMD:R_0603_1608Metric"
 		(layer "F.Cu")
@@ -8704,7 +8793,18 @@
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz -90 -0 -0)
+				(xyz -90 -180 -0)
+			)
+		)
+		(model "${KIPRJMOD}/3D/HF46F.stp"
+			(offset
+				(xyz 9.5 -2.5 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz -0 -90 -0)
 			)
 		)
 	)
@@ -11573,6 +11673,17 @@
 				(xyz -90 -0 -0)
 			)
 		)
+		(model "${KIPRJMOD}/3D/HF46F.stp"
+			(offset
+				(xyz 9 -2.5 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz -0 -90 -0)
+			)
+		)
 	)
 	(footprint "HF46F_005-HS1:RELAY_HF46F_005-HS1"
 		(layer "F.Cu")
@@ -12023,6 +12134,17 @@
 			)
 			(rotate
 				(xyz -90 -0 -0)
+			)
+		)
+		(model "${KIPRJMOD}/3D/HF46F.stp"
+			(offset
+				(xyz 9 -2.5 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz -0 -90 -0)
 			)
 		)
 	)
