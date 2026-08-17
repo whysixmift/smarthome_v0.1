@@ -1,0 +1,10 @@
+﻿"Symbol";"Value";"Unit";
+"TraceParts.PartNumber";"90-26092019-023101";"";
+"REFERENCE";"HF46F";"";
+"TraceParts.PartTitle";"Power Relay HF46F";"";
+"TraceParts.InstanceId";"90-26092019-0231017YAG77ZCAFGETSVDMVY67VCFP";"";
+"SUPPLIER";"Xiamen Hongfa Electroacoustic Co.,Ltd.";"";
+"DESIGN";"Power Relay HF46F";"";
+"TraceParts.PartVersion";"1.0.2";"";
+"TraceParts.PartLanguage";"en";"";
+"MASS";"About 3";"";
