@@ -4,3 +4,7 @@
 _restore_backup_*
 .history/
 *.rpt
+*.json
+
+# PlatformIO build outputs
+.pio/

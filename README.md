@@ -1,114 +1,112 @@
-# Smart Home ESP32 Controller
+# Smart Home ESP32 Board
 
-This project is a custom all-in-one smart home automation PCB powered by an ESP32-WROOM-32 module. It combines an onboard AC-DC step-down power supply, four 5V relays driven by a ULN2003A driver, USB-C programming via a CH340C bridge, status LEDs, and an external I2C header into a single compact board.
+I built this board because I wanted a single compact PCB to control lights and appliances in my room using an ESP32. Before this, I had separate relay modules, breadboards, and loose jumper wires hooked up to AC mains, which was messy and unsafe.
+
+This project combines an AC-DC power supply, four 5V relays, an OLED display header, onboard control buttons, status LEDs, and USB-C flashing onto one board.
 
 ![Full 3D Render](images/board_3d_full.png)
-*Full 3D view of the smart home PCB rendered in KiCad.*
+*3D render of the board in KiCad.*
 
-## Why I Made This
+---
 
-I started this project because I wanted to control lights and appliances in my house over Wi-Fi without dealing with a messy breadboard full of loose wires, separate relay modules, and plug-in power adapters. Having AC mains wired to loose modules on a workbench felt unsafe and clunky.
+## What It Has Onboard
 
-I designed this board in KiCad so I could connect AC mains directly to an onboard power converter, switch four separate AC/DC circuits using built-in relays, and flash the ESP32 directly through USB-C.
+* **ESP32-WROOM-32**: Main microcontroller for Wi-Fi, Bluetooth, and logic.
+* **4 Mechanical Relays**: Hongfa HF46F / Songle 5V 5A mini power relays (`K1`-`K4`) driven by a ULN2003A Darlington transistor array.
+* **OLED Display Header**: 4-pin header (`J4`) for an SSD1306 128x64 I2C display module.
+* **Control Buttons**:
+  * `SW1`: Reset switch
+  * `SW2`: Bootloader switch
+  * `SW3`: Previous / Up navigation button (GPIO 13)
+  * `SW4`: Select / Toggle button (GPIO 12)
+  * `SW5`: Next / Down navigation button (GPIO 27)
+* **AC-DC Power Supply**: Hi-Link HLK-PM01 module converts 100V-240V AC mains to 5V DC, followed by an AMS1117-3.3 regulator for 3.3V power.
+* **USB-C Flashing**: USB-C port (`J1`) with a CH340C serial chip and auto-reset circuit so code uploads directly from your computer.
 
-## How It Works
+---
 
-The hardware is split into five functional sections:
+## Hardware Pinout Map
 
-1. **Power Supply**: AC mains connects to a 5.08mm screw terminal feeding a Hi-Link HLK-PM01 step-down module, which converts 100V-240V AC to 5V DC. An AMS1117-3.3 linear regulator converts the 5V line down to 3.3V DC to power the ESP32. An SS34 Schottky diode provides reverse voltage protection.
-2. **Microcontroller**: An ESP32-WROOM-32 handles Wi-Fi connectivity and logic. It has dedicated Reset (`SW1`) and Boot (`SW2`) tactile buttons for manual control.
-3. **USB & Programming Circuit**: A USB Type-C port (`J1`) connects to a CH340C USB-to-UART bridge IC. Dual SS8050 NPN transistors (`Q1`, `Q2`) control the automatic DTR/RTS reset circuit so code uploads work without needing to manually press buttons.
-4. **Relay Control & Driver**: To drive the relays safely without overloading the ESP32 GPIOs, the ESP32 controls a ULN2003A Darlington transistor array driver. The driver triggers four Hongfa HF46F 5V relays (`K1`-`K4`). Each relay coil is paired with a parallel SS34 flyback diode (`D10`-`D13`) to protect against inductive voltage spikes.
-5. **Expansion & Status**: A 4-pin 2.54mm header (`J4`) breaks out 5V, GND, SDA, and SCL for external I2C devices like OLED displays or sensors. Six SMD LEDs (`D5`-`D9`, `D14`) give visual status for power and relay channels.
+| ESP32 Pin | Device / Component | Net Name | Purpose |
+| :--- | :--- | :--- | :--- |
+| **GPIO 25** | Relay 1 + LED D6 | `SIG_1/IO25` | Output 1 |
+| **GPIO 23** | Relay 2 + LED D7 | `SIG_2/IO23` | Output 2 |
+| **GPIO 19** | Relay 3 + LED D8 | `SIG_3/IO19` | Output 3 |
+| **GPIO 18** | Relay 4 + LED D9 | `SIG_4/IO18` | Output 4 |
+| **GPIO 21** | OLED Display | `SDA` | I2C Data (J4 Header Pin 3) |
+| **GPIO 22** | OLED Display | `SCL` | I2C Clock (J4 Header Pin 4) |
+| **GPIO 13** | Button SW3 | `SWITCH_1/IO13` | Nav: Previous / Up |
+| **GPIO 12** | Button SW4 | `SWITCH_2/IO12` | Nav: Select / Confirm / Toggle |
+| **GPIO 27** | Button SW5 | `SWITCH_3/IO27` | Nav: Next / Down |
+| **GPIO 14** | External Switch 4 | `SWITCH_4/IO14` | Screw Terminal J3 Pin 4 |
+| **GPIO 2** | Status LED D5 | `LED/IO2` | Heartbeat LED |
+| **GPIO 0** | Switch SW2 | `IO0` | Boot button |
+| **EN** | Switch SW1 | `EN` | Reset button |
 
-## Project Visuals
+---
+
+## Pictures
 
 ### Schematic
 ![Schematic Diagram](images/schematic.png)
-*Schematic diagram exported from KiCad.*
+*Schematic overview created in KiCad.*
 
 ### PCB Layout
 ![PCB Layout](images/pcb_layout.png)
-*2-layer PCB trace routing and silkscreen layout.*
+*2-layer PCB layout.*
 
-### Detail Renders
-![Silkscreen and LED Detail](images/board_3d_corner_detail.png)
-*Close-up 3D render showing status LEDs, capacitors, and silkscreen text.*
+### Detail Views
+![LED Detail](images/board_3d_corner_detail.png)
+*Close-up of status LEDs and passives.*
 
-![ESP32 and USB-C Detail](images/board_3d_esp32_detail.png)
-*Close-up 3D render showing the ESP32 module, USB-C connector, reset switches, and I2C header.*
+![ESP32 Detail](images/board_3d_esp32_detail.png)
+*Close-up of the ESP32, USB-C port, and reset buttons.*
 
-## Hardware
+---
 
-* **Microcontroller**: ESP32-WROOM-32 (Wi-Fi + BLE)
-* **Relays**: 4 x HF46F-005-HS1 (5V coils, 5A switching rating)
-* **Relay Driver**: ULN2003A Darlington Transistor Array (SOIC-16)
-* **Power Supply**: HLK-PM01 AC-DC module (100-240V AC to 5V DC) + AMS1117-3.3 LDO
-* **USB Interface**: USB-C receptacle + CH340C USB-to-UART converter with auto-reset circuit
-* **Expansion**: 4-pin I2C pin header (5V, GND, SDA, SCL)
+## Firmware
 
-## Assembly
+The code in `firmware/` uses PlatformIO with the Arduino framework and FreeRTOS tasks to keep things simple:
 
-For soldering this board, components should be assembled in order of height:
+1. **Display Task**: Periodically updates the SSD1306 128x64 OLED screen showing current relay status and uptime.
+2. **Button Task**: Debounces physical buttons (`SW3`, `SW4`, `SW5`) to navigate the OLED menu and toggle relays.
+3. **Relay Control**: Safely drives the ULN2003A inputs low or high to switch relay coils.
 
-1. **SMD ICs & Semiconductors**: Solder small ICs first (CH340C, ULN2003A, AMS1117-3.3, SS8050 transistors, TVS diodes, and SS34 diodes).
-2. **SMD Passives**: Solder 0603 and 1206 resistors, capacitors, and status LEDs.
-3. **USB-C Port**: Solder the surface-mount USB-C receptacle (`J1`).
-4. **Tactile Switches**: Solder the Reset (`SW1`) and Boot (`SW2`) buttons.
-5. **ESP32 Module**: Solder the ESP32-WROOM-32 castellated pads onto the board.
-6. **Through-Hole Modules**:
-   * Solder the 4-pin I2C pin header (`J4`).
-   * Solder the four HF46F relays (`K1`-`K4`).
-   * Solder the 6-pin screw terminal blocks (`J2`, `J3`).
-   * Solder the HLK-PM01 AC-DC power module (`PS1`).
+### How to Flash
 
-## Flashing the ESP32
+1. Open `firmware/` in VS Code with PlatformIO.
+2. Connect the board to your computer with USB-C.
+3. Run:
+   ```bash
+   pio run -t upload
+   ```
 
-Firmware code for this project is currently not included in this repository.
-
-When uploading code using Arduino IDE, ESP-IDF, or PlatformIO:
-
-1. **Software & Drivers**: Install the CH340 USB-to-UART driver for your operating system.
-2. **Connection**: Connect the PCB to your computer with a USB Type-C cable.
-3. **Board Settings**:
-   * Select **ESP32 Dev Module** in Arduino IDE or PlatformIO.
-   * Select the COM / TTY serial port for the CH340 device.
-4. **Uploading**: Click Upload. The onboard CH340C auto-reset circuit will pulse DTR/RTS to put the ESP32 into bootloader mode automatically.
+---
 
 ## Bill of Materials (BOM)
 
-| Reference | Component | Package / Footprint | Quantity | Function |
-| :--- | :--- | :--- | :---: | :--- |
-| `U4` | ESP32-WROOM-32 | RF_Module:ESP32-WROOM-32 | 1 | Microcontroller (Wi-Fi / BLE) |
-| `PS1` | HLK-PM01 | Converter_ACDC:HLK-PMxx | 1 | AC-DC 5V step-down power supply module |
-| `U3` | AMS1117-3.3 | SOT-223-3 | 1 | 3.3V LDO linear regulator |
-| `U1` | ULN2003A | SOIC-16 | 1 | Darlington transistor array relay driver |
-| `U2` | CH340C | SOIC-16 | 1 | USB-to-UART serial converter |
-| `K1, K2, K3, K4` | HF46F_005-HS1 | RELAY_HF46F_005-HS1 | 4 | 5V 5A mini power relays |
-| `J1` | USB_C_Receptacle_USB2.0_16P | USB-C 16-pin SMD | 1 | USB-C power & serial connection |
-| `J2, J3` | Screw_Terminal_01x06 | TerminalBlock 6-pin 5.08mm | 2 | Relay contacts and AC input terminals |
-| `J4` | Conn_01x04_Pin | PinHeader 1x4 2.54mm | 1 | I2C expansion header (5V, GND, SDA, SCL) |
-| `Q1, Q2` | SS8050 | SOT-23 | 2 | Auto-reset circuit transistors |
-| `D1, D2, D4` | LESD5D5.0CT1G | SOD-523 / TVS | 3 | ESD protection diodes |
-| `D3, D10-D13` | SS34 | SMA | 5 | Schottky diodes (reverse power & flyback) |
-| `D5-D9, D14` | LED | LED_0603 | 6 | Status indicator LEDs |
-| `SW1, SW2` | SW_Push (SKRK) | SMD Pushbutton | 2 | Reset and Boot tactile switches |
-| `C1, C3, C8-C12` | 0.1uF | 0603 SMD | 7 | Decoupling capacitors |
-| `C2, C5, C7, C13` | 10uF | 1206 SMD | 4 | Filter capacitors |
-| `C4` | 10uF / 25V | 0603 SMD | 1 | Power line capacitor |
-| `C6` | 10nF | 1206 SMD | 1 | Noise suppression capacitor |
-| `R1, R9, R12` | 0Ω | 0603 SMD | 3 | Zero-ohm bridge jumpers |
-| `R2, R3` | 5.1kΩ | 0603 SMD | 2 | USB-C CC pull-down resistors |
-| `R4-R8, R17, R20` | 2.2kΩ | 0603 SMD | 7 | LED current-limiting resistors |
-| `R10, R11, R13-R16, R18, R19` | 10kΩ | 0603 SMD | 8 | Pull-up / pull-down resistors |
+The full BOM with quantities and purchase links is available in [`BOM.csv`](BOM.csv).
 
-## Known Issues
+| Component | Qty | Specification | Purchase Link | Total ($) |
+| :--- | :---: | :--- | :--- | :---: |
+| ESP32-WROOM-32 | 1 | ESP32-WROOM-32-N4 | [LCSC C82899](https://www.lcsc.com/product-detail/WiFi-Modules_Espressif-Systems-ESP32-WROOM-32-N4_C82899.html) | $2.75 |
+| Relays (Songle/Hongfa) | 4 | HF46F / 5V 5A Mini Power Relay | [LCSC C38573](https://www.lcsc.com/product-detail/Relays_Hongfa-America-HF46F-005-HS1_C38573.html) | $1.80 |
+| Relay Driver IC | 1 | ULN2003A SOIC-16 | [LCSC C14881](https://www.lcsc.com/product-detail/Darlington-Transistor-Arrays_STMicroelectronics-ULN2003D1013TR_C14881.html) | $0.18 |
+| OLED Display | 1 | 0.96" 128x64 I2C SSD1306 | [LCSC C2836248](https://www.lcsc.com/product-detail/OLED-Displays-Modules_KMR-KMR-0-96-OLED-W_C2836248.html) | $1.85 |
+| Tactile Switches | 5 | 3x6mm SMD Push Button | [LCSC C318884](https://www.lcsc.com/product-detail/Tactile-Switches_C318884.html) | $0.25 |
+| AC-DC Module | 1 | HLK-PM01 5V 3W | [LCSC C209743](https://www.lcsc.com/product-detail/Power-Modules_Hi-Link-HLK-PM01_C209743.html) | $2.80 |
+| **TOTAL** | | | | **$11.36** |
 
-* **AC Power Safety**: High-voltage AC mains connects to `PS1` and terminal blocks `J2`/`J3`. High-voltage clearance must be maintained when mounting inside an enclosure.
-* **Firmware State**: Software/firmware code files are not yet included in this repository.
+---
+
+## Known Issues & Notes
+
+* **Physical Board Testing**: The PCB files pass all KiCad DRC and ERC checks and the firmware compiles with zero errors under PlatformIO (`pio run`), but I have not physically uploaded this firmware to the manufactured board yet.
+* **AC Mains Handling**: 100V-240V AC connects directly to `PS1` and terminal `J2`. Be careful when handling power and use a 3D-printed enclosure.
+
+---
 
 ## Credits
 
-* **Hongfa**: Symbol and footprint references for HF46F relays.
-* **Hi-Link**: Symbol and footprint references for the HLK-PM01 AC-DC power module.
-* **KiCad Libraries**: Standard KiCad symbol and footprint libraries for ESP32, CH340C, ULN2003A, and passive components.
+* **KiCad Libraries**: Symbols and footprints for ESP32, CH340C, ULN2003A, and passive parts.
+* **Adafruit GFX / SSD1306**: OLED display libraries.

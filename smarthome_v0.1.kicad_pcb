@@ -94,7 +94,6 @@
 		)
 		(capping no)
 		(filling no)
-		(zone_defaults)
 		(pcbplotparams
 			(layerselection 0x00000000_00000000_55555555_5755f5ff)
 			(plot_on_all_layers_selection 0x00000000_00000000_00000000_00000000)
@@ -5340,8 +5339,8 @@
 			(uuid "60cfc7b6-2017-4c8d-bf5b-c7235d7759f3")
 			(effects
 				(font
-					(size 0.32 0.32)
-					(thickness 0.08)
+					(size 0.8 0.8)
+					(thickness 0.12)
 				)
 			)
 		)
@@ -6852,8 +6851,8 @@
 			(uuid "b42284fc-a7d1-41db-a773-587202ffd6d2")
 			(effects
 				(font
-					(size 0.32 0.32)
-					(thickness 0.08)
+					(size 0.8 0.8)
+					(thickness 0.12)
 				)
 			)
 		)
@@ -9102,8 +9101,8 @@
 			(uuid "26d9b561-a7ac-418e-baf6-27fd94f7611a")
 			(effects
 				(font
-					(size 0.32 0.32)
-					(thickness 0.08)
+					(size 0.8 0.8)
+					(thickness 0.12)
 				)
 			)
 		)
@@ -13511,7 +13510,7 @@
 			(uuid "8d68918b-56a1-462b-8ce3-fb41d9ca7afd")
 			(effects
 				(font
-					(size 0.32 0.32)
+					(size 0.8 0.8)
 					(thickness 0.05)
 				)
 			)
@@ -14166,7 +14165,7 @@
 			(uuid "0f696e78-f61b-42aa-b9b0-0706c659ba07")
 			(effects
 				(font
-					(size 0.32 0.32)
+					(size 0.8 0.8)
 					(thickness 0.05)
 				)
 			)
