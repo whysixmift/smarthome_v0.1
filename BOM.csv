@@ -1,9 +1,9 @@
 Component,Quantity,Specification / Part Number,Purpose,Purchase Link,Unit Price ($),Total Price ($)
 ESP32-WROOM-32,1,ESP32-WROOM-32-N4 4MB Flash,Microcontroller (Wi-Fi + BLE),https://www.lcsc.com/product-detail/WiFi-Modules_Espressif-Systems-ESP32-WROOM-32-N4_C82899.html,2.75,2.75
-Songle 5V Relay (HF46F),4,HF46F-005-HS1 5V 5A Mini Power Relay,5V Mechanical Relays (K1-K4),https://www.lcsc.com/product-detail/Relays_Hongfa-America-HF46F-005-HS1_C38573.html,0.45,1.80
+Hongfa / Songle 5V Relay,4,HF46F-005-HS1 5V 5A Mini Power Relay,5V Mechanical Relays (K1-K4),https://www.lcsc.com/product-detail/Relays_Hongfa-America-HF46F-005-HS1_C38573.html,0.45,1.80
 ULN2003A,1,ULN2003ADR SOIC-16,7-NPN Darlington Relay Driver IC,https://www.lcsc.com/product-detail/Darlington-Transistor-Arrays_STMicroelectronics-ULN2003D1013TR_C14881.html,0.18,0.18
 SSD1306 OLED Display,1,0.96 inch 128x64 I2C OLED Module,Local Display Interface (J4 Header),https://www.lcsc.com/product-detail/OLED-Displays-Modules_KMR-KMR-0-96-OLED-W_C2836248.html,1.85,1.85
-Tactile Push Buttons,5,3x6mm SMD Tactile Switch (SKRK),Reset (SW1) Boot (SW2) Prev (SW3) Select (SW4) Next (SW5),https://www.lcsc.com/product-detail/Tactile-Switches_C318884.html,0.05,0.25
+Tactile Push Buttons,2,3x6mm SMD Tactile Switch (SKRK),Reset (SW1) and Boot (SW2),https://www.lcsc.com/product-detail/Tactile-Switches_C318884.html,0.05,0.10
 HLK-PM01,1,100-240V AC to 5V DC 3W,Onboard Step-down AC-DC Power Module,https://www.lcsc.com/product-detail/Power-Modules_Hi-Link-HLK-PM01_C209743.html,2.80,2.80
 AMS1117-3.3,1,SOT-223 3.3V 1A LDO,Linear Voltage Regulator,https://www.lcsc.com/product-detail/Linear-Voltage-Regulators-LDO_Advanced-Monolithic-Systems-AMS1117-3-3_C6186.html,0.08,0.08
 CH340C,1,SOIC-16 USB-to-UART Bridge,USB Serial Converter IC,https://www.lcsc.com/product-detail/USB-Drivers-Receivers-Transceivers_WCH-Jiangsu-Qinheng-Microelec-CH340C_C84681.html,0.32,0.32
@@ -14,6 +14,6 @@ SS8050 NPN Transistor,2,SOT-23 NPN BJT,Auto-Reset Circuit (Q1 Q2),https://www.lc
 LESD5D5.0CT1G TVS Diode,3,SOD-523 ESD Protection Diode,ESD Protection for USB/Reset (D1 D2 D4),https://www.lcsc.com/product-detail/TVS_LESD5D5-0CT1G_C80415.html,0.03,0.09
 SS34 Schottky Diode,5,SMA DO-214AC 3A 40V,Reverse Voltage & Flyback Diodes (D3 D10-D13),https://www.lcsc.com/product-detail/Schottky-Barrier-Diodes-SBD_SS34_C1592.html,0.04,0.20
 SMD LEDs,6,0603 Green/Red SMD LED,Power & Relay Status LEDs (D5-D9 D14),https://www.lcsc.com/product-detail/Light-Emitting-Diodes-LED_C72043.html,0.01,0.06
-SMD Resistors (Assorted),20,0603 SMD Resistors (0Ω 5.1kΩ 2.2kΩ 10kΩ),Pull-up / Pull-down / LED Limiting (R1-R20),https://www.lcsc.com/product-detail/Chip-Resistor-Surface-Mount_C25804.html,0.005,0.10
-SMD Capacitors (Assorted),13,0603 / 1206 MLCC (0.1uF 10uF 10nF),Filter & Decoupling Capacitors (C1-C13),https://www.lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_C14663.html,0.01,0.13
-TOTAL COST,,,,,,$11.36
+SMD Resistors (Assorted),18,0603 SMD Resistors (0Ω 5.1kΩ 2.2kΩ 10kΩ),Pull-up / Pull-down / LED Limiting (R1-R19),https://www.lcsc.com/product-detail/Chip-Resistor-Surface-Mount_C25804.html,0.005,0.09
+SMD Capacitors (Assorted),12,0603 / 1206 MLCC (0.1uF 10uF 10nF),Filter & Decoupling Capacitors (C1-C12),https://www.lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_C14663.html,0.01,0.12
+TOTAL COST,,,,,,$11.21
